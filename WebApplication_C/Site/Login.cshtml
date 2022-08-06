@@ -1,8 +1,14 @@
 ﻿@using WebApplication_C.Classes
+
 @{
+    var mensagem = "";
     Layout = null;
     BancoDeDados.DBConnect();
 }
+
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -22,24 +28,31 @@
     </div>
     <div style="margin-top: 30px;">
         <div class="border-login">
-            <p class="div-login-passw">Não possui Login? Cadastre-se agora mesmo!</p><br>
-            <p class="div-login-passw" style="font-weight: bold;">E-mail:</p>
-            <input type="email" name="Email" id="">
-            <p class="div-login-passw" style="font-weight: bold;">Login:</p>
-            <input type="text" name="Login" id="">
-            <p class="div-login-passw" style="font-weight: bold;">Senha:</p>
-            <input type="password" name="Senha" id="">
-            <p class="div-login-passw" style="font-weight: bold;">Confirmar Senha:</p>
-            <input type="password" name="Senha" id=""><br>
-            <button>Cadastrar</button>
+            <form method="post" action="">
+                <p class="div-login-passw">Não possui Login? Cadastre-se agora mesmo!</p><br>
+                <p class="div-login-passw" style="font-weight: bold;">E-mail:</p>
+                <input type="text" name="cadastroEmail" id="">
+                <p class="div-login-passw" style="font-weight: bold;">Nome:</p>
+                <input type="text" name="cadastroNome" id="">
+                <p class="div-login-passw" style="font-weight: bold;">Login:</p>
+                <input type="text" name="cadastroLogin" id="">
+                <p class="div-login-passw" style="font-weight: bold;">Senha:</p>
+                <input type="password" name="cadastroSenha" id="">
+                <p class="div-login-passw" style="font-weight: bold;">Confirmar Senha:</p>
+                <input type="password" name="confirmarSenha" id=""><br>
+                <button onclick="@CadastrarUsuario(Request.Form["cadastroSenha"], Request.Form["confirmaSenha"], out mensagem)">Cadastrar</button>
+            </form>
+            <p style="font-weight: bold;">@mensagem</p>
         </div>
         <div class="border-login">
-            <p class="div-login-passw">Se já possui, Logue abaixo!</p><br>
-            <p class="div-login-passw" style="font-weight: bold;">Login:</p>
-            <input type="text" name="Login" id="">
-            <p class="div-login-passw" style="font-weight: bold;">Senha:</p>
-            <input type="password" name="Senha" id=""><br>
-            <button>Acessar</button>
+            <form method="post" action="~/Site/ConfirmaCadastro.cshtml">
+                <p class="div-login-passw">Se já possui, Logue abaixo!</p><br>
+                <p class="div-login-passw" style="font-weight: bold;">Login:</p>
+                <input type="text" name="Login" id="">
+                <p class="div-login-passw" style="font-weight: bold;">Senha:</p>
+                <input type="password" name="Senha" id=""><br>
+                <button>Acessar</button>
+            </form>
         </div>
     </div>
     <div class="p-espacamento2"></div>
@@ -58,3 +71,31 @@
 </body>
 
 </html>
+
+
+
+
+
+
+@helper LogarUsuario(User usuario)
+{
+    usuario.email = Request.Form["email"];
+    User usuarioAtivo = usuario;
+}
+
+@functions{
+    public string CadastrarUsuario(string senha, string compara, out string mensagem)
+    {
+        if (senha == compara)
+        {
+            BancoDeDados.Cadastro(Request.Form["cadastroNome"], Request.Form["cadastroLogin"], Request.Form["cadastroEmail"], Request.Form["cadastroSenha"]);
+            mensagem = "";
+            return "";
+        }
+        else
+        {
+            mensagem = "As senhas não coincidem";
+            return "As senhas não coincidem";
+        }
+    }
+}
