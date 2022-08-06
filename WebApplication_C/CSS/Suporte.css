@@ -1,0 +1,33 @@
+﻿body {
+    background-color: rgb(236, 236, 236);
+}
+
+.soraka {
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    background-color: bisque;
+    border: 2px solid rgb(255, 210, 127);
+    text-align: right;
+    padding: 20px 90px;
+    font-size: 40px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+
+.border-apresentacao {
+    border: 2px;
+    border-bottom-style: groove;
+    padding-bottom: 10px;
+}
+
+.p-espacamento {
+    margin-top: 30px;
+}
+
+.suporte-descricao {
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
