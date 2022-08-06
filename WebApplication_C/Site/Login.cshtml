@@ -2,6 +2,7 @@
 
 @{
     var mensagem = "";
+    var mensagemInvalido = "";
     Layout = null;
     BancoDeDados.DBConnect();
 }
@@ -40,19 +41,20 @@
                 <input type="password" name="cadastroSenha" id="">
                 <p class="div-login-passw" style="font-weight: bold;">Confirmar Senha:</p>
                 <input type="password" name="confirmarSenha" id=""><br>
-                <button onclick="@CadastrarUsuario(Request.Form["cadastroSenha"], Request.Form["confirmaSenha"], out mensagem)">Cadastrar</button>
+                <button onclick="@{mensagem = CadastrarUsuario();}">Cadastrar</button>
             </form>
-            <p style="font-weight: bold;">@mensagem</p>
+            <p style="font-weight: bold; color: red">@mensagem</p>
         </div>
         <div class="border-login">
-            <form method="post" action="~/Site/ConfirmaCadastro.cshtml">
+            <form method="post">
                 <p class="div-login-passw">Se já possui, Logue abaixo!</p><br>
                 <p class="div-login-passw" style="font-weight: bold;">Login:</p>
-                <input type="text" name="Login" id="">
+                <input type="text" name="login" id="">
                 <p class="div-login-passw" style="font-weight: bold;">Senha:</p>
-                <input type="password" name="Senha" id=""><br>
-                <button>Acessar</button>
+                <input type="password" name="loginSenha" id=""><br>
+                <button onclick="@{mensagemInvalido = LogarUsuario();}">Acessar</button>
             </form>
+            <p style="font-weight: bold; color: red;">@mensagemInvalido</p>
         </div>
     </div>
     <div class="p-espacamento2"></div>
@@ -74,28 +76,34 @@
 
 
 
-
-
-
-@helper LogarUsuario(User usuario)
-{
-    usuario.email = Request.Form["email"];
-    User usuarioAtivo = usuario;
-}
-
 @functions{
-    public string CadastrarUsuario(string senha, string compara, out string mensagem)
+    public string CadastrarUsuario()
     {
+        if (Request.Form["cadastroSenha"] == null)
+            return "";
+        string senha = Request.Form["cadastroSenha"];
+        string compara = Request.Form["confirmarSenha"];
         if (senha == compara)
         {
             BancoDeDados.Cadastro(Request.Form["cadastroNome"], Request.Form["cadastroLogin"], Request.Form["cadastroEmail"], Request.Form["cadastroSenha"]);
-            mensagem = "";
             return "";
         }
         else
         {
-            mensagem = "As senhas não coincidem";
             return "As senhas não coincidem";
         }
+    }
+
+    public string LogarUsuario()
+    {
+        if (Request.Form["loginSenha"] == null)
+            return "";
+
+        if (BancoDeDados.Login(Request.Form["login"], Request.Form["loginSenha"]))
+        {
+            Response.Redirect("~/Site/indexKabonga.cshtml");
+        }
+
+        return "Algo deu errado";
     }
 }
