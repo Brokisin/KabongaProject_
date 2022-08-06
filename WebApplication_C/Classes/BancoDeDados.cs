@@ -599,11 +599,6 @@ namespace WebApplication_C.Classes
 
         public static void Cadastro(string nome, string login, string email, string senha)
         {
-            User usuario = new User();
-            usuario.nome = nome;
-            usuario.login = login;
-            usuario.email = email;
-            usuario.senha = senha;
             string query = $"INSERT INTO Usuario(nome, login, senha, email) values('{nome}','{login}', '{senha}', '{email}')";
 
             if(OpenConnection() == true)
@@ -614,6 +609,34 @@ namespace WebApplication_C.Classes
             }
 
             CloseConnection();
+        }
+
+        public static bool Login(string login, string senha)
+        {
+            string query = $"SELECT nome, login, senha, email FROM Usuario where login = '{login}'";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                if(dataReader != null)
+                {
+                    while (dataReader.Read())
+                    {
+                        User usuarioLogin = new User();
+                        usuarioLogin.nome = dataReader[0].ToString();
+                        usuarioLogin.login = dataReader[1].ToString();
+                        usuarioLogin.senha = dataReader[2].ToString();
+                        usuarioLogin.email = dataReader[3].ToString();
+                        FuncoesKabonga.usuarioAtivo = usuarioLogin;
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
 
     }
