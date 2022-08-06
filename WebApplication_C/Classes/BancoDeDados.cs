@@ -597,5 +597,24 @@ namespace WebApplication_C.Classes
             }
         }
 
+        public static void Cadastro(string nome, string login, string email, string senha)
+        {
+            User usuario = new User();
+            usuario.nome = nome;
+            usuario.login = login;
+            usuario.email = email;
+            usuario.senha = senha;
+            string query = $"INSERT INTO Usuario(nome, login, senha, email) values('{nome}','{login}', '{senha}', '{email}')";
+
+            if(OpenConnection() == true)
+            {
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            CloseConnection();
+        }
+
     }
 }

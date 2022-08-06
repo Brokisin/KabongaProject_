@@ -172,7 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\BancoDeDados.cs" />
+    <Compile Include="Classes\FuncoesKabonga.cs" />
     <Compile Include="Classes\Pessoa.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +187,7 @@
     <Content Include="Site\Produtos.cshtml" />
     <Content Include="Site\Sobre.cshtml" />
     <Content Include="Site\Suporte.cshtml" />
+    <Content Include="Site\ConfirmaCadastro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
