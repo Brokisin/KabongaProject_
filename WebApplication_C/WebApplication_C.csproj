@@ -166,7 +166,7 @@
     <Content Include="Imagens\placaDeVideo.png" />
     <Content Include="Imagens\placaDeVideo2.png" />
     <Content Include="Imagens\smartwatchHuawei.png" />
-    <Content Include="Imagens\teclado+mouseRedragon.png" />
+    <Content Include="Imagens\tecladoMouseRedragon.png" />
     <Content Include="kabonga.icon.png" />
     <Content Include="Web.config" />
   </ItemGroup>
