@@ -26,7 +26,7 @@ namespace WebApplication_C.Classes
             //server = "localhost";
             server = "10.200.119.241";
             //database = "connectcsharptomysql";
-            database = "SENAI_DB";
+            database = "Kabonga";
             //uid = "username";
             uid = "admin";
             //password = "password";
