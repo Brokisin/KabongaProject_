@@ -625,6 +625,9 @@ namespace WebApplication_C.Classes
                 {
                     while (dataReader.Read())
                     {
+                        if (senha != dataReader[2].ToString())
+                            return false;
+
                         User usuarioLogin = new User();
                         usuarioLogin.nome = dataReader[0].ToString();
                         usuarioLogin.login = dataReader[1].ToString();

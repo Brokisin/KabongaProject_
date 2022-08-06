@@ -132,6 +132,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\ComprarProdutosCss.css" />
     <Content Include="CSS\KabongaStyles.css" />
     <Content Include="CSS\Login.css" />
     <Content Include="CSS\Produtos.css" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <Compile Include="Classes\BancoDeDados.cs" />
     <Compile Include="Classes\FuncoesKabonga.cs" />
+    <Compile Include="Classes\ItemAtual.cs" />
     <Compile Include="Classes\Pessoa.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -188,6 +190,7 @@
     <Content Include="Site\Sobre.cshtml" />
     <Content Include="Site\Suporte.cshtml" />
     <Content Include="Site\ConfirmaCadastro.cshtml" />
+    <Content Include="Site\ComprarProduto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
