@@ -9,5 +9,12 @@ namespace WebApplication_C.Classes
     {
         public static User usuarioAtivo;
 
+
+        public static string Carrinho()
+        {
+
+
+            return "Adicionado item ao carrinho!";
+        }
     }
 }
